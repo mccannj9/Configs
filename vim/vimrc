@@ -1,0 +1,106 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+
+" Git plugin not hosted on GitHub
+" Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before the following line
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'liuchengxu/space-vim-dark'
+Plugin 'vim-python/python-syntax'
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+" Stuff for airline theme
+let g:airline_theme='base16_google'
+
+" Stuff for google theme
+" colorscheme base16-google-dark
+" colorscheme PaperColor
+" colorscheme focuspoint
+" Stuff for spacemacs theme
+" let g:space_vim_dark_background = 234
+colorscheme space-vim-dark
+hi Comment cterm=italic
+" hi Comment guifg=#5C6370 ctermfg=59
+set termguicolors
+hi LineNr ctermbg=NONE guibg=NONE
+
+" Stuff for youcompleteme
+let g:ycm_python_interpreter_path = '/home/jamie/Programs/Pythons/3.6.8/bin/py36/bin/python'
+let g:ycm_python_sys_path = []
+let g:ycm_extra_conf_vim_data = [
+  \  'g:ycm_python_interpreter_path',
+  \  'g:ycm_python_sys_path'
+  \]
+let g:ycm_global_ycm_extra_conf = '/home/jamie/Configs/vim/python_interpreter_ycm_config.py'
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+" Stuff for python syntax highlighting
+let g:python_highlight_builtin_funcs = 1
+let g:python_highlight_all = 1
+
+" Standard vim configuration
+set number
+
+" GVIM stuff
+set guifont=Monaco\ 11
+"
+
+function! FontSizePlus ()
+  let l:gf_size_whole = matchstr(&guifont, '\( \)\@<=\d\+$')
+  let l:gf_size_whole = l:gf_size_whole + 1
+  let l:new_font_size = ' '.l:gf_size_whole
+  let &guifont = substitute(&guifont, ' \d\+$', l:new_font_size, '')
+endfunction
+
+function! FontSizeMinus ()
+  let l:gf_size_whole = matchstr(&guifont, '\( \)\@<=\d\+$')
+  let l:gf_size_whole = l:gf_size_whole - 1
+  let l:new_font_size = ' '.l:gf_size_whole
+  let &guifont = substitute(&guifont, ' \d\+$', l:new_font_size, '')
+endfunction
+
+if has("gui_running")
+    nmap <S-F12> :call FontSizeMinus()<CR>
+    nmap <F12> :call FontSizePlus()<CR>
+endif
