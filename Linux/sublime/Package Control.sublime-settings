@@ -1,0 +1,33 @@
+{
+	"bootstrapped": true,
+	"downloader_precedence":
+	{
+		"linux":
+		[
+			"curl",
+			"wget",
+			"urllib"
+		],
+		"osx":
+		[
+			"urllib"
+		],
+		"windows":
+		[
+			"wininet"
+		]
+	},
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"A File Icon",
+		"Anaconda",
+		"Boxy Theme",
+		"DA UI",
+		"GitGutter",
+		"MarkdownHighlighting",
+		"Package Control"
+	]
+}
